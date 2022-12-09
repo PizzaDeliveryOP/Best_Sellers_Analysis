@@ -11,7 +11,9 @@ def run_analysis(book_list):
     print("*******************************************************************")
     print('')
     example_analysis(books)
-    analysis_one(book_list)
+    analysis_one(books)
+    analysis_two(books)
+    analysis_three(books)
     # print('')
     # print("*******************************************************************")
     # print('')
@@ -36,7 +38,6 @@ def create_book_list(data_list):
     print(book_list)
     return book_list
 
-
 def example_analysis(book_list):
     print("Analysis of which book had the highest price in 2016")
     # Find all books from 2016
@@ -49,10 +50,9 @@ def example_analysis(book_list):
     # Print that book's name & price to terminal
     print(
         f"The most expensive book in 2016 was {highest_cost_book.name} with a price of {highest_cost_book.price}")
-  
-
 
 def analysis_one(book_list):
+    print("Analysis of which book had the lowest number of reviews in 2018")
     # Find all books from 2018
     # Use a Lambda filter function to find books who have a year of 2018
     # Converting to a list, and saving as variable books_2018
@@ -60,19 +60,54 @@ def analysis_one(book_list):
     # identifying lowest number of reviews in that year, saving as least_reviewed_book
     # using min(), with lambda function
     least_reviewed_book = min(books_2018, key=lambda book: book.number_of_reviews)
-
     print(
-        f"Analysis of which book had the lowest number of reviews in 2018, the book was {least_reviewed_book.name}")
-
+        f"The book that had the lowest number of reviews in 2018 was {least_reviewed_book.name}")
 
 def analysis_two(book_list):
     print("Analysis of which genre (fiction or non-fiction) has appeared the most in the top 50's list")
-
+    #Find all books on the best seller list from 1-50 using Lambda. 
+    fiction_counts = sum(map(lambda book: book.genre == 'Fiction',book_list))
+    non_fiction_counts = sum(map(lambda book: book.genre == 'Non Fiction',book_list))
+    print('Number of Fiction books in the Top 50s list:',fiction_counts)
+    print('Number of Non-Fiction books in the Top 50s list:',non_fiction_counts)
+    #if fiction_counts > non_fiction_counts:
+    #    print('There were more Fiction books than Nonfiction books om the Top 50 List for a total of',fiction_counts,'Fiction books')
+    #    elif fiction_counts = non_fiction_counts
+    #        print('The number of Fiction and Nonfiction books in the Top 50 List was',fiction_counts)
+    #    elif non_fiction_counts > fiction_counts:
+    #        print('There were more Non Fiction books than Fiction in the Top 50 List for a total of',non_fiction_counts,'Non Fiction books')
+    #    break
 
 def analysis_three(book_list):
     print("Analysis of which book has appeared the most in the top 50's list, and how many times it has appeared")
+    
+    list_of_years = set([book.year for book in book_list])
+ 
+    print(list_of_years)
 
+    for loop_year in list_of_years:
+        books_specfic_to_year = [book for book in book_list if book.year == loop_year]
 
+    
+    #list(filter(lambda book: book.year == 2018, book_list))
+    # Create a list of lists
+        # This list will contain lists for every year
+        # Each year list, will conatin all of the books in that year
+        # Removed duplicate values from each year list
+    # Recombine all of the distinct year lists together
+    # Count which book shows up the most
+
+    #unique_books = top50_list['title']
+    #uniqueValues = empDfObj['title'].unique()
+    
+    #print(uniqueValues)
+    
+    #unique_books = 0
+    #for item in top50_list:
+    #    if item not in unique_books:
+    #        unique_books.append(int(item))
+    #        unique_books +=1
+    #print(unique_books)
 # BONUS USER STORIES:
 
 
